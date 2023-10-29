@@ -4,8 +4,8 @@ This is a simple Flask application for a todo app api with authentication
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/horlakz/todo-flask-app.git`
-2. Navigate to the project directory: `cd todo-flask-app`
+1. Clone the repository: `git clone https://github.com/horlakz/todo-app-flask.git`
+2. Navigate to the project directory: `cd todo-app-flask`
 3. Install the dependencies: `pip install -r requirements.txt`
 
 ## Usage
