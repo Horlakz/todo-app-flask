@@ -27,7 +27,10 @@ def register():
         hashed_password = generate_password_hash(data["password"], salt_length=10)
 
         user = User(
-            email=data["email"], username=data["username"], password=hashed_password
+            fullname=data["fullname"],
+            email=data["email"],
+            username=data["username"], 
+            password=hashed_password
         )
 
         db.session.add(user)

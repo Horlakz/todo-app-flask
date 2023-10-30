@@ -9,11 +9,13 @@ class User(BaseModel):
     __tablename__ = "users"
 
     id: str
+    fullname: str
     email: str
     username: str
     created_at: str
     updated_at: str
 
+    fullname = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False)
     username = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
