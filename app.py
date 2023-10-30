@@ -40,6 +40,5 @@ def index():
     return jsonify({"about": "Todo App", "message": "OK"})
 
 
-# TODO: fix this debug mode
 if __name__ == "__main__":
-    app.run(host=host, port=port, debug=bool(debug))
+    app.run(host=host, port=port, debug=debug == "True")
