@@ -14,7 +14,6 @@ def init_db(app: Flask):
     db_sslmode = os.environ.get("DATABASE_SSLMODE", "require")
 
 
-    # TODO: make sure sslmode is set to require in production and it's working
     app.config[
         "SQLALCHEMY_DATABASE_URI"
     ] = f"postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}?sslmode={db_sslmode}"
