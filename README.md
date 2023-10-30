@@ -11,4 +11,9 @@ This is a simple Flask application for a todo app api with authentication
 ## Usage
 
 1. Start the server: `python app.py`
-2. Open a web browser and navigate to `http://localhost:3000`
+2. (Optional) to start the application production mode: `gunicorn -b :3000 app:app`
+3. Open a web browser and navigate to `http://localhost:3000`
+
+## Documentation
+
+api documentation is available [here](https://documenter.getpostman.com/view/26276921/2s9YXb84vH)
