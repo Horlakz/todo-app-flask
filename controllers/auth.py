@@ -19,10 +19,10 @@ def register():
         email_exist = User.query.filter_by(email=data["email"]).first()
         username_exist = User.query.filter_by(username=data["username"]).first()
         if email_exist is not None:
-            return jsonify({"message": "email already exist"})
+            return jsonify({"message": "email already exist"}), 400
 
         if username_exist:
-            return jsonify({"message": "username already exist"})
+            return jsonify({"message": "username already exist"}), 400
 
         hashed_password = generate_password_hash(data["password"], salt_length=10)
 
@@ -36,7 +36,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        return jsonify({"message": "user registration is successful"})
+        return jsonify({"message": "user registration is successful"}), 201
 
     except Exception as e:
         return jsonify({"message": str(e)}), 400
@@ -51,15 +51,15 @@ def login():
         data = request.get_json()
 
         if not data.get("username") or not data.get("password"):
-            return jsonify({"message": "username and password are required"})
+            return jsonify({"message": "username and password are required"}), 422
 
         user = User.query.filter_by(username=data["username"]).first()
 
         if not user:
-            return jsonify({"message": "username does not exist"})
+            return jsonify({"message": "username does not exist"}), 400
 
         if not check_password_hash(user.password, data["password"]):
-            return jsonify({"message": "password does not match"})
+            return jsonify({"message": "password does not match"}), 401
 
         access_token = jwt.encode(
             {
