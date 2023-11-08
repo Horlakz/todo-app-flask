@@ -3,6 +3,7 @@ from json import JSONEncoder
 import os
 
 from flask import Flask, jsonify
+from flask_cors import CORS, cross_origin
 
 from config.db import init_db
 from controllers.todo import todo_controller
@@ -23,6 +24,8 @@ class CustomJSONEncoder(JSONEncoder):
 
 app = Flask(__name__)
 
+cors = CORS(app)
+app.config["CORS_HEADERS"] = "Content-Type"
 app.json_encoder = CustomJSONEncoder
 app.register_blueprint(todo_controller)
 app.register_blueprint(auth_controller)
@@ -34,6 +37,7 @@ init_db(app)
 port = os.environ.get("PORT", 3000)
 host = os.environ.get("HOST", "0.0.0.0")
 debug = os.environ.get("DEBUG", True)
+
 
 @app.get("/")
 def index():
