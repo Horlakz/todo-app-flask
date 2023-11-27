@@ -8,11 +8,11 @@ from models.user import User
 
 
 def token_required(f):
-    jwt_secret = os.environ.get("JWT_SECRET")
-
     @wraps(f)
     def decorated(*args, **kwargs):
+        jwt_secret = os.environ.get("JWT_SECRET")
         token = None
+
         if "Authorization" in request.headers:
             header_value = request.headers.get("Authorization")
 
