@@ -12,7 +12,9 @@ todo_controller = Blueprint("todo_controller", __name__)
 @token_required
 def index(user):
     try:
-        todos = Todo.query.options(joinedload(Todo.user)).filter_by(user_id=user.id).all()
+        todos = (
+            Todo.query.options(joinedload(Todo.user)).filter_by(user_id=user.id).all()
+        )
 
         return jsonify(todos)
     except Exception as e:
@@ -24,8 +26,8 @@ def index(user):
 def create(user):
     try:
         data = request.get_json()
-        
-        if not data.get('title'):
+
+        if not data.get("title"):
             return jsonify({"message": "Title is required!"}), 400
 
         todo = Todo(title=data["title"], user_id=user.id)
@@ -45,10 +47,10 @@ def update(user, todo_id):
 
     data = request.get_json()
 
-    if data.get('title'):
-        todo.title = data['title']
-    if data.get('completed') is not None:
-        todo.completed = data['completed']
+    if data.get("title"):
+        todo.title = data["title"]
+    if data.get("completed") is not None:
+        todo.completed = data["completed"]
 
     db.session.commit()
     return jsonify({"message": "Todo updated"})
